@@ -30,7 +30,7 @@ Allow users (Guests and Hosts) to securely register, log in, and manage their ac
 
 ### Input/Output Specifications
 - **Input (Register):**
-  ```json  {
+  ``` {
     "username": "john_doe",
     "email": "john@example.com",
     "password": "SecurePass123"
@@ -177,3 +177,4 @@ Allow guests to book available properties and manage their reservations.
 	- Host: can manage properties, view bookings.
 
 	- Admin: full access (moderation, user/property management).
+ ---
