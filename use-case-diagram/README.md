@@ -37,6 +37,6 @@ This use case diagram specifies the context of the Airbnb Clone Backend, capture
   - Add/Update/Delete Property ──► Manage Property
 
 ## File
-- `use-case-diagram.png` — exported diagram (UML use case diagram)
+- `alx-airbnbn-usecase-diagram.png` — exported diagram (UML use case diagram)
 
 
