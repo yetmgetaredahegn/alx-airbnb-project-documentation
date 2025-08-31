@@ -30,66 +30,61 @@ Allow users (Guests and Hosts) to securely register, log in, and manage their ac
 
 ### Input/Output Specifications
 - **Input (Register):**
-  ```json
-  {
+  ```json  {
     "username": "john_doe",
     "email": "john@example.com",
     "password": "SecurePass123"
-  }
-Output (Success):
-
+  }```
+- **Output (Success)**:
+```
 json
-Copy code
 {
   "message": "User registered successfully",
   "user_id": 1
-}
-Error Example:
-
-json
-Copy code
+}```
+- **Error Example**:
+```json
 {
   "error": "Email already exists"
-}
-Validation Rules
-Email must be valid format.
+}```
+### Validation Rules
+- Email must be valid format.
 
-Password: min 8 characters, at least 1 uppercase, 1 lowercase, 1 number.
+- Password: min 8 characters, at least 1 uppercase, 1 lowercase, 1 number.
 
-Username must be alphanumeric, 3–20 characters.
+- Username must be alphanumeric, 3–20 characters.
 
-Performance Criteria
-Authentication API should respond within 200ms under normal load.
+### Performance Criteria
+- Authentication API should respond within 200ms under normal load.
 
-Password hashing must use a secure algorithm (e.g., PBKDF2, bcrypt, Argon2).
+- Password hashing must use a secure algorithm (e.g., PBKDF2, bcrypt, Argon2).
 
-2. Property Management
-Objective
+##2. Property Management
+###Objective
 Allow hosts to add, update, and manage rental properties.
 
-Functional Requirements
-Hosts can create new property listings with details: title, description, location, price_per_night, availability_dates, images.
+###Functional Requirements
+- Hosts can create new property listings with details: title, description, location, price_per_night, availability_dates, images.
 
-Hosts can update or delete their properties.
+- Hosts can update or delete their properties.
 
-Guests can search and view properties based on filters (location, price, availability).
+- Guests can search and view properties based on filters (location, price, availability).
 
-API Endpoints
-POST /api/properties – Create new property (Host only).
+###API Endpoints
+- `POST /api/properties` – Create new property (Host only).
 
-GET /api/properties – List all properties with filters.
+- `GET /api/properties` – List all properties with filters.
 
-GET /api/properties/{id} – Get details of a property.
+- `GET /api/properties/{id}` – Get details of a property.
 
-PUT /api/properties/{id} – Update property details (Host only).
+- `PUT /api/properties/{id}` – Update property details (Host only).
 
-DELETE /api/properties/{id} – Delete property (Host only).
+- `DELETE /api/properties/{id}` – Delete property (Host only).
 
-Input/Output Specifications
-Input (Create Property):
-
+### Input/Output Specifications
+###Input (Create Property):
+```
 json
-Copy code
 {
   "title": "Modern Apartment",
   "description": "2-bedroom apartment near city center",
@@ -97,65 +92,57 @@ Copy code
   "price_per_night": 40,
   "availability_dates": ["2025-09-01", "2025-09-30"],
   "images": ["image1.jpg", "image2.jpg"]
-}
-Output (Success):
-
-json
-Copy code
+}```
+- **Output (Success)**:
+```json
 {
   "message": "Property created successfully",
   "property_id": 101
-}
-Validation Rules
-Price must be a positive number.
+}```
+###Validation Rules
+- Price must be a positive number.
 
-Location cannot be empty.
+- Location cannot be empty.
 
-At least one availability date must be provided.
+- At least one availability date must be provided.
 
-Hosts can only update/delete properties they own.
+- Hosts can only update/delete properties they own.
 
-Performance Criteria
-Property search must return results within 500ms.
+### Performance Criteria
+- Property search must return results within 500ms.
 
-Property listing API must support pagination (default: 10 per page).
+- Property listing API must support pagination (default: 10 per page).
+## 3. Booking System
 
-3. Booking System
-Objective
+### Objective
 Allow guests to book available properties and manage their reservations.
 
-Functional Requirements
-Guests can create a booking by selecting property, check-in and check-out dates.
+### Functional Requirements
+- Guests can create a booking by selecting property, check-in, and check-out dates.  
+- System must validate property availability before confirming booking.  
+- Guests can cancel bookings before check-in date.  
+- Hosts can view bookings for their properties.  
 
-System must validate property availability before confirming booking.
+### API Endpoints
+- `POST /api/bookings` – Create a booking  
+- `GET /api/bookings` – View all bookings  
+  - Guest: view own bookings  
+  - Host: view bookings for owned properties  
+- `GET /api/bookings/{id}` – Get details of a booking  
+- `DELETE /api/bookings/{id}` – Cancel a booking (Guest only)  
 
-Guests can cancel bookings before check-in date.
-
-Hosts can view bookings for their properties.
-
-API Endpoints
-POST /api/bookings – Create a booking.
-
-GET /api/bookings – View all bookings (Guest: own bookings, Host: bookings for owned properties).
-
-GET /api/bookings/{id} – Get details of a booking.
-
-DELETE /api/bookings/{id} – Cancel a booking (Guest only).
-
-Input/Output Specifications
-Input (Create Booking):
-
-json
-Copy code
+### Input/Output Specifications
+- **Input (Create Booking):**
+```json
 {
   "property_id": 101,
   "check_in": "2025-09-05",
   "check_out": "2025-09-10"
-}
-Output (Success):
+}```
 
-json
-Copy code
+
+- **Output (Success)**:
+```json
 {
   "message": "Booking confirmed",
   "booking_id": 555,
@@ -163,39 +150,30 @@ Copy code
   "check_in": "2025-09-05",
   "check_out": "2025-09-10",
   "status": "confirmed"
-}
-Validation Rules
-Check-in date must be before check-out date.
+}```
+### Validation Rules
+- Check-in date must be before check-out date.
 
-Property must be available for the requested dates.
+- Property must be available for the requested dates.
 
-Only authenticated users can create bookings.
+- Only authenticated users can create bookings.
 
-Performance Criteria
-Booking confirmation should occur within 1 second.
+### Performance Criteria
+- Booking confirmation should occur within 1 second.
 
-System must prevent double-booking of the same property for overlapping dates.
+- System must prevent double-booking of the same property for overlapping dates.
 
-Notes
-All endpoints must follow RESTful standards.
+### Notes
+- All endpoints must follow RESTful standards.
 
-Responses must use consistent JSON format.
+- Responses must use consistent JSON format.
 
-Authentication must be enforced using JWT.
+- Authentication must be enforced using JWT.
 
-Role-based access control:
+- Role-based access control:
 
-Guest: can search, book, manage bookings.
+	- Guest: can search, book, manage bookings.
 
-Host: can manage properties, view bookings.
+	- Host: can manage properties, view bookings.
 
-Admin: full access (moderation, user/property management).
-
-pgsql
-Copy code
-
----
-
-👉 This `requirements.md` is now ready to add to your repo under root.  
-
-Would you like me to also **add a 4th requirement** (like **Payment Processing**) so the document is more complete, or keep it with the 3 features for now (User Auth, Property Management, Booking System)?
+	- Admin: full access (moderation, user/property management).
