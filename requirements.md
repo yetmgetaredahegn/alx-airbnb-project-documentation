@@ -62,18 +62,18 @@ Allow users (Guests and Hosts) to securely register, log in, and manage their ac
 
 - Password hashing must use a secure algorithm (e.g., PBKDF2, bcrypt, Argon2).
 
-##2. Property Management
-###Objective
+## 2. Property Management
+### Objective
 Allow hosts to add, update, and manage rental properties.
 
-###Functional Requirements
+### Functional Requirements
 - Hosts can create new property listings with details: title, description, location, price_per_night, availability_dates, images.
 
 - Hosts can update or delete their properties.
 
 - Guests can search and view properties based on filters (location, price, availability).
 
-###API Endpoints
+### API Endpoints
 - `POST /api/properties` – Create new property (Host only).
 
 - `GET /api/properties` – List all properties with filters.
@@ -85,7 +85,7 @@ Allow hosts to add, update, and manage rental properties.
 - `DELETE /api/properties/{id}` – Delete property (Host only).
 
 ### Input/Output Specifications
-###Input (Create Property):
+### Input (Create Property):
 ```json
 {
   "title": "Modern Apartment",
@@ -103,7 +103,7 @@ Allow hosts to add, update, and manage rental properties.
   "property_id": 101
 }
 ```
-###Validation Rules
+### Validation Rules
 - Price must be a positive number.
 
 - Location cannot be empty.
