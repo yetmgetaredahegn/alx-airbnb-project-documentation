@@ -30,7 +30,7 @@ Allow users (Guests and Hosts) to securely register, log in, and manage their ac
 
 ### Input/Output Specifications
 - **Input (Register):**
- ```
+ ```json
  {
     "username": "john_doe",
     "email": "john@example.com",
@@ -38,7 +38,7 @@ Allow users (Guests and Hosts) to securely register, log in, and manage their ac
  }
 ```
 - **Output (Success)**:
-```
+```json
  {
     "message": "User registered successfully",
     "user_id": 1
@@ -86,8 +86,7 @@ Allow hosts to add, update, and manage rental properties.
 
 ### Input/Output Specifications
 ###Input (Create Property):
-```
-json
+```json
 {
   "title": "Modern Apartment",
   "description": "2-bedroom apartment near city center",
@@ -95,13 +94,15 @@ json
   "price_per_night": 40,
   "availability_dates": ["2025-09-01", "2025-09-30"],
   "images": ["image1.jpg", "image2.jpg"]
-}```
+}
+```
 - **Output (Success)**:
 ```json
 {
   "message": "Property created successfully",
   "property_id": 101
-}```
+}
+```
 ###Validation Rules
 - Price must be a positive number.
 
@@ -141,7 +142,8 @@ Allow guests to book available properties and manage their reservations.
   "property_id": 101,
   "check_in": "2025-09-05",
   "check_out": "2025-09-10"
-}```
+}
+```
 
 
 - **Output (Success)**:
@@ -153,7 +155,8 @@ Allow guests to book available properties and manage their reservations.
   "check_in": "2025-09-05",
   "check_out": "2025-09-10",
   "status": "confirmed"
-}```
+}
+```
 ### Validation Rules
 - Check-in date must be before check-out date.
 
@@ -180,4 +183,4 @@ Allow guests to book available properties and manage their reservations.
 	- Host: can manage properties, view bookings.
 
 	- Admin: full access (moderation, user/property management).
- ---
+---
