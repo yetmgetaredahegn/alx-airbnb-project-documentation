@@ -30,11 +30,11 @@ Allow users (Guests and Hosts) to securely register, log in, and manage their ac
 
 ### Input/Output Specifications
 - **Input (Register):**
-  ``` {
+  {
     "username": "john_doe",
     "email": "john@example.com",
     "password": "SecurePass123"
-  }```
+  }
 - **Output (Success)**:
 ```
 json
