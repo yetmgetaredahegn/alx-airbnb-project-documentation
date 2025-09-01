@@ -39,16 +39,17 @@ Allow users (Guests and Hosts) to securely register, log in, and manage their ac
 ```
 - **Output (Success)**:
 ```
-json
-{
-  "message": "User registered successfully",
-  "user_id": 1
-}```
+ {
+    "message": "User registered successfully",
+    "user_id": 1
+ }
+```
 - **Error Example**:
 ```json
 {
   "error": "Email already exists"
-}```
+}
+```
 ### Validation Rules
 - Email must be valid format.
 
